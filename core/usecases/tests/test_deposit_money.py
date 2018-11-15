@@ -1,16 +1,16 @@
 from unittest import TestCase
 from unittest.mock import create_autospec
 
-from django.db import models
 
-class Account(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
-    balance = models.DecimalField(decimal_places=3,max_digits=25)
+class DepositMoneyByAccountTests(TestCase):
+    def setUp(self):
+        self.financial_transactions_gateway = create_autospec(FinancialTransactionsGateway)
+        self.account_gateway = create_autospec(AccountGateway)
+        self.financial_transactions_presenter = create_autospec(FinancialTransactionsPresenter)
 
-class FinancialTransactions(models.Model):
-    operation = models.CharField(max_length=255)
-    notes = models.TextField()
-    value = models.DecimalField(decimal_places=3,max_digits=25)
-    last_balance = models.DecimalField(decimal_places=3,max_digits=25)
+        self.usecase = DepositMoney(
+            self.financial_transactions_gateway,
+            self.account_gateway,
+            self.financial_transactions_presenter
+        )
 
