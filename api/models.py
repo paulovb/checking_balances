@@ -17,7 +17,7 @@ class FinancialTransaction(models.Model):
     value = models.DecimalField(decimal_places=3,max_digits=25)
     last_balance = models.DecimalField(decimal_places=3,max_digits=25)
     created_at = models.DateTimeField(auto_now_add=True)
-    account = models.ForeignKey(Account)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     class Meta:
        managed = True

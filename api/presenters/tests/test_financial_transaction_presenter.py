@@ -20,7 +20,9 @@ class FinancialTransactionPresenterTests(TestCase):
         financialTransaction_1 = FinancialTransaction.objects.create(operation='deposit', value=1000.503, last_balance=23000.212, account=account, notes='This is a deposit in account')
         financialTransaction_2 = FinancialTransaction.objects.create(operation='deposit', value=1000.504, last_balance=23000.213, account=account, notes='This is a deposit in account')
     
-        self.presenter.show(account, [financialTransaction_1, financialTransaction_2])
+        transactions = [financialTransaction_1, financialTransaction_2]
+
+        self.presenter.show(200, account, transactions)
 
         response = self.presenter.response()
 

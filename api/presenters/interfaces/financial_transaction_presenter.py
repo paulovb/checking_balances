@@ -1,3 +1,3 @@
 class FinancialTransactionPresenter(object):
-    def show(self, account, transactions):
+    def show(self, status, account, transactions):
         raise NotImplementedError

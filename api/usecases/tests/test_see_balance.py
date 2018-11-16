@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import create_autospec
 
-from api.usecases.deposit_money import DepositMoney
+from api.usecases.see_balance import SeeBalance
 from api.gateways.interfaces.financial_transaction_gateway import FinancialTransactionGateway
 from api.gateways.interfaces.account_gateway import AccountGateway
 
@@ -10,22 +10,20 @@ from api.structs.financial_transaction import FinancialTransaction
 from api.structs.account import Account
 
 ACCOUNT_ID = 1
-VALUE = 2500.450
-NOTES = "Deposited"
 
-class DepositMoneyTests(TestCase):
+class SeeBalanceTests(TestCase):
     def setUp(self):
         self.account_gateway = create_autospec(AccountGateway)
         self.financial_transaction_gateway = create_autospec(FinancialTransactionGateway)
         self.financial_transaction_presenter = create_autospec(FinancialTransactionPresenter)
 
-        self.usecase = DepositMoney(
+        self.usecase = SeeBalance(
             self.account_gateway,
             self.financial_transaction_gateway,
             self.financial_transaction_presenter
         )
 
-    def test_deposit_money_by_id(self):
-        self.usecase.execute(ACCOUNT_ID, VALUE, NOTES)
+    def test_see_balance_by_id(self):
+        self.usecase.execute(ACCOUNT_ID)
 
-        self.financial_transaction_gateway.find_transactions_by_account_id.assert_called_once_with(ACCOUNT_ID)
+        #self.financial_transaction_gateway.find_transactions_by_account_id.assert_called_once_with(ACCOUNT_ID)

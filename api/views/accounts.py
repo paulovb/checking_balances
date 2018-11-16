@@ -14,8 +14,9 @@ class Accounts(View):
             return HttpResponse(
                 json.dumps(
                     AccountStruct(
-                        name=account.name, 
-                        email=account.email, 
+                        id=account.id,
+                        name=account.name,
+                        email=account.email,
                         balance=float(account.balance)).__dict__),
                 content_type='application/json')
         else:
@@ -24,8 +25,9 @@ class Accounts(View):
             return HttpResponse(
                 json.dumps(
                     [AccountStruct(
-                        name=account.name, 
-                        email=account.email, 
+                        id=account.id,
+                        name=account.name,
+                        email=account.email,
                         balance=float(account.balance)).__dict__ for account in accounts]),
                 content_type='application/json')
     

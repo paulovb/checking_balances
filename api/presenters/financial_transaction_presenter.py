@@ -7,21 +7,27 @@ class FinancialTransactionPresenter(FinancialTransactionPresenterInterface):
     def __init__(self):
         self.content_account = {}
         self.content_transactions = []
+        self.status = 201
 
-    def show(self, account, transactions):
+    def show(self, status, account, transactions):
+
+        self.status = status
 
         self.content_account = {
             'account_id': account.id,
             'account_name': account.name,
             'account_email': account.email,
-            'account_balance': account.balance,
+            'account_balance': float(account.balance),
         }
 
         for transaction in transactions:
             self.content_transactions.append({
+                'transaction_id': transaction.id,
                 'operation': transaction.operation,
-                'value': transaction.value,
-#                'date': transaction.created_at,
+                'date': str(transaction.created_at),
+                'value': float(transaction.value),
+                'last_balance': float(transaction.last_balance),
+                'notes': transaction.notes,
             })
 
         if self.content_transactions:
@@ -29,6 +35,7 @@ class FinancialTransactionPresenter(FinancialTransactionPresenterInterface):
 
     def response(self):
         return HttpResponse(
+            status=self.status,
             content=json.dumps(self.content_account),
             content_type='application/json'
         )
