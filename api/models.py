@@ -7,7 +7,7 @@ class Account(models.Model):
     balance = models.DecimalField(decimal_places=3,max_digits=10)
     created_at = models.DateTimeField(auto_now_add=True)
 
-class FinancialTransactions(models.Model):
+class FinancialTransaction(models.Model):
     operation = models.CharField(max_length=255)
     notes = models.TextField()
     value = models.DecimalField(decimal_places=3,max_digits=25)
