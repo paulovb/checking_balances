@@ -6,4 +6,4 @@ RUN pip install --no-cache-dir -q -r requirements.txt
 
 ADD . /app
 
-CMD gunicorn project.wsgi -b 0.0.0.0:5000
+CMD gunicorn project.wsgi -b 0.0.0.0:$PORT
