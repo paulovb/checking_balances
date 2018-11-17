@@ -117,3 +117,39 @@
   When the money doesn't enough
 
   * **Code:** 203 <br />
+
+**Get the Account Balance**
+----
+* **URL**
+
+  api/v1/balance/:account_id
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   account_id=1
+ 
+* **Data Params**
+
+  None
+  
+* **Success Response:**
+
+  * **Code:** 201 <br />
+    **Content:** `{
+        "account_id": 1, 
+        "account_name": "Gabriela Lima", 
+        "account_email": "gabriela.lima@mail.com", 
+        "account_balance": 500.0, 
+        "transactions": [
+          {"transaction_id": 1, "operation": "deposit", "date": "2018-11-17 03:34:27.639778+00:00", "value": 1000.0, "last_balance": 0.0, "notes": "Any note"},
+          {"transaction_id": 2, "withdraw": "deposit", "date": "2018-11-17 03:36:55.546724+00:00", "value": 500.0, "last_balance": 1000.0, "notes": "Any note"}
+        ]
+    }`
+ 
+* **Error Response:**
+
+  None
