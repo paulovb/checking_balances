@@ -30,7 +30,7 @@
 
   None
 
-**Deposit Money in an Account**
+**Deposit Money**
 ----
 * **URL**
 
@@ -73,7 +73,7 @@
   None
 
 
-**Deposit Money in an Account**
+**Withdraw Money**
 ----
 * **URL**
 
@@ -115,5 +115,5 @@
 * **Error Response:**
 
   When the money doesn't enough
-  
+
   * **Code:** 203 <br />
