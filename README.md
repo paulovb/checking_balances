@@ -54,7 +54,7 @@ $ ./manage.py test -v2
 
 ## Deployment
 
-This application have been deployed on Heroku: 
+This application have been deployed on Heroku: https://checking-balance.herokuapp.com/api/v1/
 
 ## Built With
 
