@@ -27,5 +27,7 @@ class DepositTests(TestCase):
         self.assertEqual(201, response.status_code)
         self.assertIsNotNone(json.loads(response.content)['account_id'])
 
-        self.assertEqual(1100.405, float(FinancialTransaction.objects.get(id=json.loads(response.content)['account_id']).value))        
-        self.assertEqual(23000.212, float(FinancialTransaction.objects.get(id=json.loads(response.content)['account_id']).last_balance))
+        deposit = FinancialTransaction.objects.all().last()
+        
+        self.assertEqual(1100.405, float(deposit.value))        
+        self.assertEqual(23000.212, float(deposit.last_balance))

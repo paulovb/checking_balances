@@ -27,8 +27,10 @@ class WithdrawTests(TestCase):
         self.assertEqual(201, response.status_code)
         self.assertIsNotNone(json.loads(response.content)['account_id'])
 
-        self.assertEqual(100.000, float(FinancialTransaction.objects.get(id=json.loads(response.content)['account_id']).value))        
-        self.assertEqual(23000.212, float(FinancialTransaction.objects.get(id=json.loads(response.content)['account_id']).last_balance))
+        withdraw = FinancialTransaction.objects.all().last()
+        
+        self.assertEqual(100.000, float(withdraw.value))        
+        self.assertEqual(23000.212, float(withdraw.last_balance))
 
     def test_withdraw_without_enough_money(self):
         account = Account.objects.create(name='Gabriela Lima', email='gabriela.lima@email.com', balance=23000.212)
