@@ -15,7 +15,7 @@ class FinancialTransactionPresenterTests(TestCase):
         self.assertEqual(float(transaction_expected.balance), transaction_founded['account_balance'])
 
     def test_show_transactions(self):
-        account = Account.objects.create(name='Gabriela Lima', email='gabriela.lima@nubank.com', balance=23000.212)
+        account = Account.objects.create(name='Gabriela Lima', email='gabriela.lima@email.com', balance=23000.212)
 
         financialTransaction_1 = FinancialTransaction.objects.create(operation='deposit', value=1000.503, last_balance=23000.212, account=account, notes='This is a deposit in account')
         financialTransaction_2 = FinancialTransaction.objects.create(operation='deposit', value=1000.504, last_balance=23000.213, account=account, notes='This is a deposit in account')

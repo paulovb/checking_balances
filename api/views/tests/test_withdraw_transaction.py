@@ -5,7 +5,7 @@ from api.models import FinancialTransaction
 from api.models import Account
 
 
-class DepositTests(TestCase):
+class WithdrawTests(TestCase):
     def setUp(self):
         self.request = Client()
 
@@ -15,17 +15,28 @@ class DepositTests(TestCase):
         self.assertEqual(FinancialTransaction_expected.value, FinancialTransaction_founded['value'])
         self.assertEqual(FinancialTransaction_expected.last_balance, FinancialTransaction_founded['last_balance'])
 
-    def test_deposit(self):
+    def test_withdraw_with_enough_money(self):
         account = Account.objects.create(name='Gabriela Lima', email='gabriela.lima@email.com', balance=23000.212)
 
         response = self.request.post(
-            "/api/v1/deposit/",
-            json.dumps({'value': 1100.405, 'account_id': account.id, 'notes': 'This is a deposit in account'}),
+            "/api/v1/withdraw/",
+            json.dumps({'value': 100.000, 'account_id': account.id, 'notes': 'This is a withdraw in account'}),
             content_type='application/json'
         )
 
         self.assertEqual(201, response.status_code)
         self.assertIsNotNone(json.loads(response.content)['account_id'])
 
-        self.assertEqual(1100.405, float(FinancialTransaction.objects.get(id=json.loads(response.content)['account_id']).value))        
+        self.assertEqual(100.000, float(FinancialTransaction.objects.get(id=json.loads(response.content)['account_id']).value))        
         self.assertEqual(23000.212, float(FinancialTransaction.objects.get(id=json.loads(response.content)['account_id']).last_balance))
+
+    def test_withdraw_without_enough_money(self):
+        account = Account.objects.create(name='Gabriela Lima', email='gabriela.lima@email.com', balance=23000.212)
+
+        response = self.request.post(
+            "/api/v1/withdraw/",
+            json.dumps({'value': 25000.000, 'account_id': account.id, 'notes': 'This is a withdraw in account'}),
+            content_type='application/json'
+        )
+
+        self.assertEqual(203, response.status_code)
