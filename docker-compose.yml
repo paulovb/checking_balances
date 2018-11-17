@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+    db:
+      restart: always
+      image: postgres:9.6.4
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: toor
+        POSTGRES_DB: app_database
+      volumes:
+        - ./postgres-data:/var/lib/postgresql/data
+      ports:
+        - "5433:5432"
+      tty: true
+      stdin_open: true
+    web:
+      build: .
+      environment:
+        DATABASE_URL: postgres://root:toor@db:5432/app_database
+      working_dir: /app
+      command: ./manage.py runserver 0.0.0.0:8000
+      ports:
+        - "8000:8000"
+      volumes:
+        - .:/app
+      depends_on:
+        - db
+      tty: true
+      stdin_open: true
