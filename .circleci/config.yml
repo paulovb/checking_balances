@@ -13,7 +13,7 @@ jobs:
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
-      #- image: circleci/postgres:9.4
+      - image: circleci/postgres:9.6
 
     working_directory: ~/repo
 
@@ -33,6 +33,8 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
+          environment:
+            DATABASE_URL: postgres://postgres@localhost:5432/test_app_database
 
       - save_cache:
           paths:
