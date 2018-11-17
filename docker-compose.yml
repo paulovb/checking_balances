@@ -3,10 +3,10 @@ version: "3"
 services:
     db:
       restart: always
-      image: postgres:9.6
+      image: postgres:9.6.4
       environment:
         POSTGRES_USER: root
-        POSTGRES_PASSWORD: root
+        POSTGRES_PASSWORD: toor
         POSTGRES_DB: app_database
       volumes:
         - ./postgres-data:/var/lib/postgresql/data
@@ -17,7 +17,7 @@ services:
     migration:
       build: .
       environment:
-        DATABASE_URL: postgres://root:root@db:5432/app_database
+        DATABASE_URL: postgres://root:toor@db:5432/app_database
       working_dir: /app
       command: ./manage.py migrate
       volumes:
@@ -27,7 +27,7 @@ services:
     web:
       build: .
       environment:
-        DATABASE_URL: postgres://root:root@db:5432/app_database
+        DATABASE_URL: postgres://root:toor@db:5432/app_database
       working_dir: /app
       command: ./manage.py runserver 0.0.0.0:8000
       ports:
