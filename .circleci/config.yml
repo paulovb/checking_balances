@@ -13,7 +13,7 @@ jobs:
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
-      - image: circleci/postgres:9.6
+      - image: circleci/postgres:9.6.4
 
     working_directory: ~/repo
 
@@ -50,6 +50,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
+            run ./manage.py migrate
             coverage run ./manage.py test -v2 && coveralls
 
       - store_artifacts:
