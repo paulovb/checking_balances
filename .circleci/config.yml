@@ -51,6 +51,16 @@ jobs:
           command: |
             . venv/bin/activate
             coverage run ./manage.py test -v2 && coveralls
+      
+      - run:
+          name: Deployment notification to Rollbar
+          command: |
+            curl https://api.rollbar.com/api/1/deploy/ \
+            -F access_token='8877abd8cb9f426982252f019f205d5e' \
+            -F environment=production \
+            -F revision=$CIRCLE_SHA1 \
+            -F local_username=$CIRCLE_USERNAME \
+            -F comment='Deploy with bug'
 
       - store_artifacts:
           path: test-reports
