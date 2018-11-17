@@ -1,4 +1,5 @@
 import json
+import rollbar
 from django.http.response import HttpResponse
 from django.views.generic import View
 from api.models import FinancialTransaction
@@ -14,16 +15,19 @@ from api.structs.account import Account
 
 
 class Deposit(View):
-    
+
     def post(self, request):
-        data = json.loads(request.body)
+        try:
+            data = json.loads(request.body)
 
-        presenter = FinancialTransactionPresenter()
+            presenter = FinancialTransactionPresenter()
 
-        DepositMoney(
-            AccountGateway(),
-            FinancialTransactionGateway(),
-            presenter
-        ).execute(data["account_id"], float(data["value"]), data["notes"])
+            DepositMoney(
+                AccountGateway(),
+                FinancialTransactionGateway(),
+                presenter
+            ).execute(data["account_id"], float(data["value"]), data["notes"])
 
-        return presenter.response()
+            return presenter.response()
+        except:
+            rollbar.report_exc_info()

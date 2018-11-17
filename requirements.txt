@@ -3,3 +3,4 @@ gunicorn==19.7
 mock==2.0.0
 python-coveralls==2.9.1
 whitenoise==4.1.1
+rollbar==0.14.5

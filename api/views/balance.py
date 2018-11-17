@@ -1,4 +1,5 @@
 import json
+import rollbar
 from django.http.response import HttpResponse
 from django.views.generic import View
 
@@ -14,13 +15,15 @@ from api.structs.account import Account
 class Balance(View):
 
     def get(self, _, account_id):
+        try:
+            presenter = FinancialTransactionPresenter()
 
-        presenter = FinancialTransactionPresenter()
+            SeeBalance(
+                AccountGateway(),
+                FinancialTransactionGateway(),
+                presenter
+            ).execute(account_id)
 
-        SeeBalance(
-            AccountGateway(),
-            FinancialTransactionGateway(),
-            presenter
-        ).execute(account_id)
-
-        return presenter.response()
+            return presenter.response()
+        except:
+            rollbar.report_exc_info()
