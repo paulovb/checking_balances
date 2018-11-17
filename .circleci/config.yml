@@ -5,6 +5,8 @@
 version: 2
 jobs:
   build:
+    environment:
+      CODECOV_TOKEN: 13132d41-302d-49e0-86cc-e0d40251950f
     docker:
       # specify the version you desire here
       # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
@@ -49,16 +51,9 @@ jobs:
           command: |
             . venv/bin/activate
             python manage.py test -v2
-
-      - run:
-        name: upload coverage report
-        command: |
-           if [[ "$UPLOAD_COVERAGE" != 0 ]]; then
-               PATH=$HOME/.local/bin:$PATH
-               pip install --user codecov
-               coverage xml
-               ~/.local/bin/codecov --token=13132d41-302d-49e0-86cc-e0d40251950f --required -X search gcov pycov -f coverage.xml --flags $CIRCLE_JOB
-           fi
+          test:
+            post:
+            - pip install codecov && codecov
 
       - store_artifacts:
           path: test-reports
