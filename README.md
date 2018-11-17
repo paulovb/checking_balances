@@ -1,7 +1,7 @@
 # Checking_balances
 
 [![CircleCI](https://circleci.com/gh/paulovb/checking_balances.svg?style=svg)](https://circleci.com/gh/paulovb/checking_balances)
-[![codecov](https://codecov.io/gh/paulovb/checking_balances/branch/master/graph/badge.svg?token=aYJm1Ab91K)](https://codecov.io/gh/paulovb/checking_balances)
+[![Coverage Status](https://coveralls.io/repos/github/paulovb/checking_balances/badge.svg?branch=master)](https://coveralls.io/github/paulovb/checking_balances?branch=master)
 
 You can get the know how to use this API in [API-Document](API-Document.md).
 
