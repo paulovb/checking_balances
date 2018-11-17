@@ -1,5 +1,7 @@
 # Checking_balances
 
+[![CircleCI](https://circleci.com/gh/paulovb/checking_balances.svg?style=svg)](https://circleci.com/gh/paulovb/checking_balances)
+
 You can get the know how to use this API in [API-Document](API-Document.md).
 
 Also, You can use a tool like [PostMan](https://www.getpostman.com/) to help you consumming it.
