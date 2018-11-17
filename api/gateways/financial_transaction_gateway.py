@@ -20,6 +20,6 @@ class FinancialTransactionGateway(FinancialTransactionGatewayInterface):
     def registry_withdraw_money(account_id, value, notes):
         account = Account.objects.get(id=account_id)
 
-        financialTransaction = FinancialTransaction.objects.create(operation='deposit', value=value, last_balance=account.balance, account=account, notes=notes)
+        financialTransaction = FinancialTransaction.objects.create(operation='withdraw', value=value, last_balance=account.balance, account=account, notes=notes)
 
         return financialTransaction
