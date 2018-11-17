@@ -39,9 +39,6 @@ The application running in `http://localhost:8000`.
 
 ## Running the tests
 
-The application have any layers of tests, with: unit tests, functional tests and integration tests.
-The tests are in any layers of application, each layer have a folder called tests.
-
 To run all tests:
 ```
 $ docker-compose run --rm web ./manage.py test -v2
