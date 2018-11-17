@@ -1,7 +1,5 @@
 asn1crypto==0.24.0
 Beaker==1.5.4
-blivet==3.0.0b1
-blivet-gui==2.1.9
 Brlapi==0.6.7
 cffi==1.11.5
 chardet==3.0.4
