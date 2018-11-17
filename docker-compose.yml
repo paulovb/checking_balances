@@ -19,7 +19,7 @@ services:
       environment:
         DATABASE_URL: postgres://root:root@db:5432/app_database
       working_dir: /app
-      command: ./manage.py migrate --noinput
+      command: ./manage.py migrate
       volumes:
         - .:/app
       depends_on:
