@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import create_autospec
 
-from api.usecases.deposit_money import DepositMoney
+from api.usecases.transfer_money import TransferMoney
 from api.gateways.interfaces.financial_transaction_gateway import FinancialTransactionGateway
 from api.gateways.interfaces.account_gateway import AccountGateway
 
@@ -12,7 +12,7 @@ from api.structs.account import Account
 ACCOUNT_ID_WITHDRAW = 1
 ACCOUNT_ID_DEPOSIT = 2
 VALUE = 2500.123
-NOTES = "Deposited"
+NOTES = "Transfer"
 
 class TransferMoneyTests(TestCase):
     def setUp(self):
