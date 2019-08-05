@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/paulovb/checking_balances.svg?style=svg)](https://circleci.com/gh/paulovb/checking_balances)
 [![Coverage Status](https://coveralls.io/repos/github/paulovb/checking_balances/badge.svg?branch=master)](https://coveralls.io/github/paulovb/checking_balances?branch=master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2eea4129cc9187d3dac6/maintainability)](https://codeclimate.com/github/paulovb/checking_balances/maintainability)
 
 You can get the know how to use this API in [API-Document](API-Document.md).
 
