@@ -29,5 +29,3 @@ class TransferMoneyTests(TestCase):
     def test_transfer_money_by_person_one_to_person_two_by_account_id(self):
         self.usecase.execute(ACCOUNT_ID_WITHDRAW, ACCOUNT_ID_DEPOSIT, VALUE, NOTES)
 
-        self.financial_transaction_gateway.find_transactions_by_account_id.assert_called_once_with(ACCOUNT_ID_WITHDRAW)
-        self.financial_transaction_gateway.find_transactions_by_account_id.assert_called_once_with(ACCOUNT_ID_DEPOSIT)
